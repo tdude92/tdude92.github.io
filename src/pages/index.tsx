@@ -14,11 +14,9 @@ export default function Home() {
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.page}>
-        <main className={styles.main}>
-          <Terminal />
-        </main>
-      </div>
+      <main className={styles.main}>
+        <Terminal />
+      </main>
     </>
   );
 }

@@ -1,31 +1,15 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  width: 100vw;
-  height: 100vh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
-
-  background-image: url(/ubuntu_2204_wallpaper_2880x1620.jpg);
-  background-size: cover;
-  background-position: center;
-
-  overflow: auto;
-}
-
 .main {
   display: flex;
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+
+  background-image: url(/ubuntu_2204_wallpaper_2880x1620.jpg);
+  background-size: cover;
+  background-position: center;
 }
