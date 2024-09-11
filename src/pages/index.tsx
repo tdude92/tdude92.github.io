@@ -1,8 +1,14 @@
 import Head from "next/head";
+import { Ubuntu_Mono } from "next/font/google";
 
 import Terminal from "./view/Terminal";
 
 import styles from "@/styles/Home.module.css";
+
+const ubuntuMonoFont = Ubuntu_Mono({
+  weight: "700",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   return (
@@ -14,7 +20,7 @@ export default function Home() {
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={`${styles.main} ${ubuntuMonoFont.className}`}>
         <Terminal />
       </main>
     </>

@@ -1,15 +1,9 @@
 import style from "@/styles/Terminal.module.css";
 import Image from "next/image";
-import { Ubuntu_Mono } from "next/font/google";
-
-const ubuntuMonoFont = Ubuntu_Mono({
-  weight: "700",
-  subsets: ["latin"],
-});
 
 export default function TerminalBody() {
   return (
-    <div className={`${style.body} ${ubuntuMonoFont.className}`}>
+    <div className={style.body}>
       <p>
         <span style={{ color: "#8AE234" }}>trevor@PersonalSite</span>:
         <span style={{ color: "#729FCF" }}>~</span>$ neofetch
