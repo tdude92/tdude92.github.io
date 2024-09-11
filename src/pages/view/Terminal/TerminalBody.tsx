@@ -44,8 +44,7 @@ export default function TerminalBody() {
             </a>
           </p>
           <p>
-            <span style={{ color: "#E1BBC9" }}>Cellular:</span> +1 (519) 498
-            5568
+            <span style={{ color: "#E1BBC9" }}>Cellular:</span> +45 52 72 87 53
           </p>
           <br />
           <p>
