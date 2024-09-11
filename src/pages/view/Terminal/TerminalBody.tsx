@@ -17,7 +17,7 @@ export default function TerminalBody() {
       <br />
       <div className={style.neofetchOutput}>
         <Image
-          src="/TVs_4284x4284.jpg"
+          src="/TVs_400x400.jpg"
           width={274}
           height={274}
           alt="Photograph of televisions"
