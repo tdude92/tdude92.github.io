@@ -1,7 +1,7 @@
 import Head from "next/head";
 import localFont from "next/font/local";
 
-import { TerminalWindow } from "./view/TerminalWindow";
+import TerminalWindow from "./view/TerminalWindow";
 
 import styles from "@/styles/Home.module.css";
 
