@@ -1,6 +1,6 @@
 import style from "@/styles/TerminalWindow.module.css";
 
-export function TitleBar() {
+export default function TitleBar() {
   return (
     <div className={style.titleBar}>
       <div
