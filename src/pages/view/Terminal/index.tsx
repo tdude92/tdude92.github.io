@@ -1,9 +1,9 @@
 import TitleBar from "./TitleBar";
 import TerminalBody from "./TerminalBody";
 
-import style from "@/styles/TerminalWindow.module.css";
+import style from "@/styles/Terminal.module.css";
 
-export default function TerminalWindow() {
+export default function Terminal() {
   return (
     <div className={style.root}>
       <TitleBar />
