@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Ubuntu_Mono } from "next/font/google";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -20,7 +20,7 @@ function Background(properties: any) {
   return (
     <mesh {...properties} ref={mesh}>
       <planeGeometry args={[1920, 1080]} />
-      <meshStandardMaterial color={"hotpink"} />
+      <meshStandardMaterial color={"#333333"} />
     </mesh>
   );
 }

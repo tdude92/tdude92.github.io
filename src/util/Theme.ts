@@ -62,6 +62,21 @@ namespace TerminalTheme {
     titleBarButton2Color: new Color("#ba7d00"),
     titleBarButton3Color: new Color("#4ea202"),
   });
+
+  export const DARK_MODE = new TerminalTheme({
+    bodyBackgroundColor: new Color("#2e3440"),
+    bodyTextColor: new Color("#d8dee9"),
+    bodyEmphasizedTextColor: new Color("#88c0d0"),
+    bodyUsernameTextColor: new Color("#a3be8c"),
+    bodyCWDTextColor: new Color("#5e81ac"),
+    bodyLinkHoverHighlightColor: new Color("#434c5e"),
+    titleBarBackgroundColor: new Color("#d8dee9"),
+    titleBarTextColor: new Color("#4c566a"),
+    titleBarButton1Color: new Color("#bf616a"),
+    titleBarButton2Color: new Color("#d7b470"),
+    titleBarButton3Color: new Color("#a3be8c"),
+  });
 }
 
 export const LIGHT_MODE = new Theme(TerminalTheme.LIGHT_MODE);
+export const DARK_MODE = new Theme(TerminalTheme.DARK_MODE);

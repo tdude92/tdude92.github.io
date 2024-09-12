@@ -1,20 +1,20 @@
 import { createContext, useState } from "react";
 
-import { LIGHT_MODE, Theme } from "@/util/Theme";
+import { DARK_MODE, Theme } from "@/util/Theme";
 
 type ThemeContextProps = {
   children: React.ReactNode;
 };
 
 const defaultContext = {
-  theme: LIGHT_MODE,
+  theme: DARK_MODE,
   setTheme: (_: Theme) => {},
 };
 
 export const ThemeContext = createContext(defaultContext);
 
 export function ThemeProvider({ children }: ThemeContextProps) {
-  const [theme, setTheme] = useState(LIGHT_MODE);
+  const [theme, setTheme] = useState(defaultContext.theme);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
