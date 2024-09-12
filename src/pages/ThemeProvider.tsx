@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
-import { DARK_MODE, Theme } from "@/util/Theme";
+import { LIGHT_MODE, Theme } from "@/util/Theme";
 
 type ThemeContextProps = {
   children: React.ReactNode;
 };
 
 const defaultContext = {
-  theme: DARK_MODE,
+  theme: LIGHT_MODE,
   setTheme: (_: Theme) => {},
 };
 
