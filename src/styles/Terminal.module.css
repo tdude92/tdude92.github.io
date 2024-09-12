@@ -40,8 +40,12 @@
   line-height: 1.2;
 }
 
-.body a:hover {
+.body a {
   text-decoration: underline;
+}
+
+.body a:hover {
+  background-color: rgba(79, 75, 78, 0.75);
 }
 
 .titleBar {

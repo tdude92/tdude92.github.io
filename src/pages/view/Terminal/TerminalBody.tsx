@@ -18,7 +18,7 @@ export default function TerminalBody() {
         />
         <div style={{ marginTop: "-4px" }}>
           <p style={{ fontSize: "17pt", color: "#E1BBC9" }}>Trevor Du</p>
-          <p style={{ color: "#E1BBC9" }}>-------------</p>
+          <p style={{ color: "#E1BBC9" }}>------------</p>
           <p>
             <span style={{ color: "#E1BBC9" }}>Github: </span>
             <a href="https://github.com/tdude92" target="_blank">
@@ -38,7 +38,10 @@ export default function TerminalBody() {
             </a>
           </p>
           <p>
-            <span style={{ color: "#E1BBC9" }}>Cellular:</span> +45 52 72 87 53
+            <span style={{ color: "#E1BBC9" }}>Resume: </span>
+            <a href="/resume.pdf" target="_blank">
+              tdude92.github.io/resume.pdf
+            </a>
           </p>
           <br />
           <p>
