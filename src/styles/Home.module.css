@@ -1,15 +1,4 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
-
-  background-image: url(/ubuntu_2204_wallpaper_2880x1620.jpg);
-  background-size: cover;
-  background-position: center;
 }

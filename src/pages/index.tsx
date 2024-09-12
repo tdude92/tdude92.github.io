@@ -1,14 +1,29 @@
 import Head from "next/head";
 import { Ubuntu_Mono } from "next/font/google";
+import { useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
+import * as THREE from "three";
 
 import Terminal from "./view/Terminal";
 
-import styles from "@/styles/Home.module.css";
+import style from "@/styles/Home.module.css";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
   subsets: ["latin"],
 });
+
+function Background(properties: any) {
+  const mesh = useRef<THREE.Mesh>(null!);
+
+  return (
+    <mesh {...properties} ref={mesh}>
+      <planeGeometry args={[1920, 1080]} />
+      <meshStandardMaterial color={"hotpink"} />
+    </mesh>
+  );
+}
 
 export default function Home() {
   return (
@@ -20,8 +35,14 @@ export default function Home() {
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${ubuntuMonoFont.className}`}>
-        <Terminal />
+      <main className={`${style.main} ${ubuntuMonoFont.className}`}>
+        <Canvas orthographic={true} resize={{ scroll: false }}>
+          <ambientLight intensity={Math.PI / 2} />
+          <Html position={[-400, 225, 0]}>
+            <Terminal />
+          </Html>
+          <Background />
+        </Canvas>
       </main>
     </>
   );
