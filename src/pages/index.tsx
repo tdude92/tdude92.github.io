@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { Ubuntu_Mono } from "next/font/google";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
-import Terminal from "./view/Terminal";
-
 import style from "@/styles/Home.module.css";
+import Terminal from "./view/Terminal";
+import { ThemeProvider } from "./ThemeProvider";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
@@ -35,15 +35,17 @@ export default function Home() {
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${style.main} ${ubuntuMonoFont.className}`}>
-        <Canvas orthographic={true} resize={{ scroll: false }}>
-          <ambientLight intensity={Math.PI / 2} />
-          <Html position={[-400, 225, 0]}>
-            <Terminal />
-          </Html>
-          <Background />
-        </Canvas>
-      </main>
+      <ThemeProvider>
+        <main className={`${style.main} ${ubuntuMonoFont.className}`}>
+          <Canvas orthographic={true} resize={{ scroll: false }}>
+            <ambientLight intensity={Math.PI / 2} />
+            <Html position={[-400, 225, 0]}>
+              <Terminal />
+            </Html>
+            <Background />
+          </Canvas>
+        </main>
+      </ThemeProvider>
     </>
   );
 }

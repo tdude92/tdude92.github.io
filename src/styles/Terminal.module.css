@@ -63,15 +63,3 @@
   height: 20px;
   border-radius: 10px;
 }
-
-#titleBarCloseButton {
-  background-color: #cc304e;
-}
-
-#titleBarMinimizeButton {
-  background-color: #ba7d00;
-}
-
-#titleBarExpandButton {
-  background-color: #4ea202;
-}
