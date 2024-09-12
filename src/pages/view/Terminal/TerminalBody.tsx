@@ -1,13 +1,68 @@
-import style from "@/styles/Terminal.module.css";
+import { useContext } from "react";
 import Image from "next/image";
+import styled from "styled-components";
+import style from "@/styles/Terminal.module.css";
+import { ThemeContext } from "@/pages/ThemeProvider";
 
 export default function TerminalBody() {
+  const theme = useContext(ThemeContext).theme.terminalTheme;
+
+  const UsernameTextSpan = styled.span`
+    color: ${theme.bodyUsernameTextColor.getStyle()};
+  `;
+
+  const CWDTextSpan = styled.span`
+    color: ${theme.bodyCWDTextColor.getStyle()};
+  `;
+
+  const Text = styled.p`
+    color: ${theme.bodyTextColor.getStyle()};
+    font-size: 13.5pt;
+    line-height: 1.2;
+  `;
+
+  const EmphasizedText = styled.p`
+    color: ${theme.bodyEmphasizedTextColor.getStyle()};
+    font-size: 13.5pt;
+    line-height: 1.2;
+  `;
+
+  const EmphasizedTextSpan = styled.span`
+    color: ${theme.bodyEmphasizedTextColor.getStyle()};
+  `;
+
+  const Link = styled.a`
+    &:hover {
+      background-color: rgba(79, 75, 78, 0.75);
+      text-decoration: underline;
+    }
+  `;
+
+  const UWLink = styled(Link)`
+    color: #c2a951;
+  `;
+
+  const ArupLink = styled(Link)`
+    color: #e61e28;
+  `;
+
+  const DropbaseLink = styled(Link)`
+    color: #729fcf;
+  `;
+
+  const SuperComLink = styled(Link)`
+    color: #ff0099;
+  `;
+
   return (
-    <div className={style.body}>
-      <p>
-        <span style={{ color: "#8AE234" }}>trevor@PersonalSite</span>:
-        <span style={{ color: "#729FCF" }}>~</span>$ neofetch
-      </p>
+    <div
+      className={style.body}
+      style={{ backgroundColor: theme.bodyBackgroundColor.getStyle() }}
+    >
+      <Text>
+        <UsernameTextSpan>trevor@PersonalSite</UsernameTextSpan>:
+        <CWDTextSpan>~</CWDTextSpan>$ neofetch
+      </Text>
       <br />
       <div className={style.neofetchOutput}>
         <Image
@@ -17,81 +72,68 @@ export default function TerminalBody() {
           alt="Photograph of televisions"
         />
         <div style={{ marginTop: "-4px" }}>
-          <p style={{ fontSize: "17pt", color: "#E1BBC9" }}>Trevor Du</p>
-          <p style={{ color: "#E1BBC9" }}>------------</p>
-          <p>
-            <span style={{ color: "#E1BBC9" }}>Github: </span>
-            <a href="https://github.com/tdude92" target="_blank">
+          <EmphasizedText style={{ fontSize: "17pt" }}>
+            Trevor Du
+          </EmphasizedText>
+          <EmphasizedText>------------</EmphasizedText>
+          <Text>
+            <EmphasizedTextSpan>Github:&nbsp;</EmphasizedTextSpan>
+            <Link href="https://github.com/tdude92" target="_blank">
               tdude92
-            </a>
-          </p>
-          <p>
-            <span style={{ color: "#E1BBC9" }}>LinkedIn: </span>
-            <a href="https://www.linkedin.com/in/trevor-du/" target="_blank">
+            </Link>
+          </Text>
+          <Text>
+            <EmphasizedTextSpan>LinkedIn:&nbsp;</EmphasizedTextSpan>
+            <Link href="https://www.linkedin.com/in/trevor-du/" target="_blank">
               linkedin.com/in/trevor-du/
-            </a>
-          </p>
-          <p>
-            <span style={{ color: "#E1BBC9" }}>Email: </span>
-            <a href="mailto: t34du@uwaterloo.ca" target="_blank">
+            </Link>
+          </Text>
+          <Text>
+            <EmphasizedTextSpan>Email:&nbsp;</EmphasizedTextSpan>
+            <Link href="mailto: t34du@uwaterloo.ca" target="_blank">
               t34du@uwaterloo.ca
-            </a>
-          </p>
-          <p>
-            <span style={{ color: "#E1BBC9" }}>Résumé: </span>
-            <a href="/resume.pdf" target="_blank">
+            </Link>
+          </Text>
+          <Text>
+            <EmphasizedTextSpan>Résumé:&nbsp;</EmphasizedTextSpan>
+            <Link href="/resume.pdf" target="_blank">
               tdude92.github.io/resume.pdf
-            </a>
-          </p>
+            </Link>
+          </Text>
           <br />
-          <p>
-            <span style={{ color: "#E1BBC9" }}>Education:</span> 3B software
-            engineering student
-          </p>
-          <p>
+          <Text>
+            <EmphasizedTextSpan>Education:&nbsp;</EmphasizedTextSpan>
+            3B software engineering student
+          </Text>
+          <Text>
             {"\u00A0".repeat(11)}
-            at the{" "}
-            <a
-              href="https://uwaterloo.ca/"
-              target="_blank"
-              style={{ color: "#C2A951" }}
-            >
+            at the&nbsp;
+            <UWLink href="https://uwaterloo.ca/" target="_blank">
               University of Waterloo
-            </a>
+            </UWLink>
             .
-          </p>
+          </Text>
           <br />
-          <p>
-            <span style={{ color: "#E1BBC9" }}>Experience:</span> Previously
-            @&nbsp;
-            <a
+          <Text>
+            <EmphasizedTextSpan>Experience:&nbsp;</EmphasizedTextSpan>
+            Previously @&nbsp;
+            <ArupLink
               href="https://www.arup.com/services/digital-solutions-and-tools/massmotion/"
               target="_blank"
-              style={{ color: "#E61E28" }}
             >
               Arup
-            </a>
+            </ArupLink>
             ,&nbsp;
-            <a
-              href="https://www.dropbase.io/"
-              target="_blank"
-              style={{ color: "#729FCF" }}
-            >
+            <DropbaseLink href="https://www.dropbase.io/" target="_blank">
               Dropbase
-            </a>
+            </DropbaseLink>
             ,&nbsp;
-            <a
-              href="https://www.super.com/"
-              target="_blank"
-              style={{ color: "#FF0099" }}
-            >
+            <SuperComLink href="https://www.super.com/" target="_blank">
               Super.com
-            </a>
-          </p>
+            </SuperComLink>
+          </Text>
           <br />
-          <p style={{ color: "#E1BBC9" }}>
-            Seeking ☃️W2025 + 🏖️S2025 Internships
-          </p>
+          <EmphasizedText>Seeking ☃️W2025 + 🏖️S2025 Internships</EmphasizedText>
         </div>
       </div>
     </div>

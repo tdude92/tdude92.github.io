@@ -5,6 +5,9 @@ class TerminalTheme {
     bodyBackgroundColor: Color;
     bodyTextColor: Color;
     bodyEmphasizedTextColor: Color;
+    bodyUsernameTextColor: Color;
+    bodyCWDTextColor: Color;
+    bodyLinkHoverHighlightColor: Color;
     titleBarBackgroundColor: Color;
     titleBarTextColor: Color;
     titleBarButton1Color: Color;
@@ -14,6 +17,9 @@ class TerminalTheme {
     this.bodyBackgroundColor = options.bodyBackgroundColor;
     this.bodyTextColor = options.bodyTextColor;
     this.bodyEmphasizedTextColor = options.bodyEmphasizedTextColor;
+    this.bodyUsernameTextColor = options.bodyUsernameTextColor;
+    this.bodyCWDTextColor = options.bodyCWDTextColor;
+    this.bodyLinkHoverHighlightColor = options.bodyLinkHoverHighlightColor;
     this.titleBarBackgroundColor = options.titleBarBackgroundColor;
     this.titleBarTextColor = options.titleBarTextColor;
     this.titleBarButton1Color = options.titleBarButton1Color;
@@ -24,6 +30,9 @@ class TerminalTheme {
   bodyBackgroundColor: Color;
   bodyTextColor: Color;
   bodyEmphasizedTextColor: Color;
+  bodyUsernameTextColor: Color;
+  bodyCWDTextColor: Color;
+  bodyLinkHoverHighlightColor: Color;
   titleBarBackgroundColor: Color;
   titleBarTextColor: Color;
   titleBarButton1Color: Color;
@@ -44,6 +53,9 @@ namespace TerminalTheme {
     bodyBackgroundColor: new Color("#2c001e"),
     bodyTextColor: new Color("#c9c0c6"),
     bodyEmphasizedTextColor: new Color("#e1bbc9"),
+    bodyUsernameTextColor: new Color("#8ae234"),
+    bodyCWDTextColor: new Color("#729fcf"),
+    bodyLinkHoverHighlightColor: new Color("rgba(79, 75, 78, 0.75)"),
     titleBarBackgroundColor: new Color("#c9c0c6"),
     titleBarTextColor: new Color("#605557"),
     titleBarButton1Color: new Color("#cc304e"),
