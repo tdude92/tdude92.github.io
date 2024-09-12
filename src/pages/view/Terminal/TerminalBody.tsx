@@ -38,7 +38,7 @@ export default function TerminalBody() {
             </a>
           </p>
           <p>
-            <span style={{ color: "#E1BBC9" }}>Resume: </span>
+            <span style={{ color: "#E1BBC9" }}>Résumé: </span>
             <a href="/resume.pdf" target="_blank">
               tdude92.github.io/resume.pdf
             </a>
