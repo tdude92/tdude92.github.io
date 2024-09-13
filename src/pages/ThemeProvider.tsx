@@ -8,7 +8,7 @@ type ThemeContextProps = {
 
 const defaultContext = {
   theme: LIGHT_MODE,
-  setTheme: (_: Theme) => {},
+  setTheme: (_: Theme) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
 };
 
 export const ThemeContext = createContext(defaultContext);
