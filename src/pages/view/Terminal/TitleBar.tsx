@@ -58,6 +58,7 @@ const DarkModeButton = styled(LuMoonStar)<{ $theme: Theme }>`
 
   &:hover {
     color: #ffffff;
+    cursor: pointer;
   }
 `;
 
@@ -74,6 +75,7 @@ const LightModeButton = styled(LuSun)<{ $theme: Theme }>`
 
   &:hover {
     color: #ffffff;
+    cursor: pointer;
   }
 `;
 
