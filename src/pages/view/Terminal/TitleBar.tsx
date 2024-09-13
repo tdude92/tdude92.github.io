@@ -28,6 +28,11 @@ const WindowButton = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 10px;
+
+  &:hover {
+    opacity: 75%;
+    cursor: pointer;
+  }
 `;
 
 const CloseButton = styled(WindowButton)<{ $theme: Theme }>`
