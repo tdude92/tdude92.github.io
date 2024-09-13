@@ -7,7 +7,7 @@ class TerminalTheme {
     bodyEmphasizedTextColor: Color;
     bodyUsernameTextColor: Color;
     bodyCWDTextColor: Color;
-    bodyLinkHoverHighlightColor: Color;
+    bodyTextHighlightColor: Color;
     titleBarBackgroundColor: Color;
     titleBarTextColor: Color;
     titleBarButton1Color: Color;
@@ -19,7 +19,7 @@ class TerminalTheme {
     this.bodyEmphasizedTextColor = options.bodyEmphasizedTextColor;
     this.bodyUsernameTextColor = options.bodyUsernameTextColor;
     this.bodyCWDTextColor = options.bodyCWDTextColor;
-    this.bodyLinkHoverHighlightColor = options.bodyLinkHoverHighlightColor;
+    this.bodyTextHighlightColor = options.bodyTextHighlightColor;
     this.titleBarBackgroundColor = options.titleBarBackgroundColor;
     this.titleBarTextColor = options.titleBarTextColor;
     this.titleBarButton1Color = options.titleBarButton1Color;
@@ -32,7 +32,7 @@ class TerminalTheme {
   bodyEmphasizedTextColor: Color;
   bodyUsernameTextColor: Color;
   bodyCWDTextColor: Color;
-  bodyLinkHoverHighlightColor: Color;
+  bodyTextHighlightColor: Color;
   titleBarBackgroundColor: Color;
   titleBarTextColor: Color;
   titleBarButton1Color: Color;
@@ -55,7 +55,7 @@ namespace TerminalTheme {
     bodyEmphasizedTextColor: new Color("#e1bbc9"),
     bodyUsernameTextColor: new Color("#8ae234"),
     bodyCWDTextColor: new Color("#729fcf"),
-    bodyLinkHoverHighlightColor: new Color("rgba(79, 75, 78, 0.75)"),
+    bodyTextHighlightColor: new Color("rgba(79, 75, 78, 0.75)"),
     titleBarBackgroundColor: new Color("#c9c0c6"),
     titleBarTextColor: new Color("#605557"),
     titleBarButton1Color: new Color("#cc304e"),
@@ -69,7 +69,7 @@ namespace TerminalTheme {
     bodyEmphasizedTextColor: new Color("#88c0d0"),
     bodyUsernameTextColor: new Color("#a3be8c"),
     bodyCWDTextColor: new Color("#5e81ac"),
-    bodyLinkHoverHighlightColor: new Color("#434c5e"),
+    bodyTextHighlightColor: new Color("#434c5e"),
     titleBarBackgroundColor: new Color("#d8dee9"),
     titleBarTextColor: new Color("#4c566a"),
     titleBarButton1Color: new Color("#bf616a"),
