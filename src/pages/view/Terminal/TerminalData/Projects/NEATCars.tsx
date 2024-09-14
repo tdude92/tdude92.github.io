@@ -1,6 +1,6 @@
 import { Theme } from "@/util/Theme";
 import TerminalData from "../";
-import { EmphasizedText, Link, Text } from "../@/styles/TerminalStyle";
+import { EmphasizedText, Link, Text } from "@/styles/TerminalStyle";
 
 const getCommand = (
   _: Theme // eslint-disable-line @typescript-eslint/no-unused-vars
