@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import style from "@/styles/Terminal.module.css";
 import TitleBar from "./TitleBar";
 import TerminalBody from "./TerminalBody";
-import TerminalData from "./TerminalData";
+import TerminalData from "@/TerminalData";
 
 interface TerminalProps {
   data: TerminalData;

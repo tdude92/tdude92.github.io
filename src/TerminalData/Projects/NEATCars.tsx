@@ -1,5 +1,5 @@
 import { Theme } from "@/util/Theme";
-import TerminalData from "../";
+import TerminalData from "..";
 import { EmphasizedText, Link, Text } from "@/styles/TerminalStyle";
 
 const getCommand = (
@@ -46,7 +46,6 @@ const getBody = (theme: Theme) => (
 export default function NEATCars(startX?: number, startY?: number) {
   return new TerminalData(
     "/NEATCars.gif",
-    "~",
     "Car driving around racetrack",
     getCommand,
     getBody,

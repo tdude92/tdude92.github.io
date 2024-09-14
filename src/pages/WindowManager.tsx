@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
-import TerminalData from "./view/Terminal/TerminalData";
-import AboutMe from "./view/Terminal/TerminalData/AboutMe";
+import TerminalData from "../TerminalData";
+import AboutMe from "../TerminalData/AboutMe";
 
 type WindowManagerProps = {
   children: React.ReactNode;

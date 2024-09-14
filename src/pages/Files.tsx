@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import File from "./File";
 import { WindowContext } from "./WindowManager";
-import AboutMe from "./view/Terminal/TerminalData/AboutMe";
-import AcreageContour from "./view/Terminal/TerminalData/Projects/AcreageContour";
-import DiscordDistances from "./view/Terminal/TerminalData/Projects/DiscordDistances";
-import GarbageWrangler from "./view/Terminal/TerminalData/Projects/GarbageWrangler";
-import NBodyTool from "./view/Terminal/TerminalData/Projects/NBodyTool";
-import NEATCars from "./view/Terminal/TerminalData/Projects/NEATCars";
-import RustyRaytracer from "./view/Terminal/TerminalData/Projects/RustyRaytracer";
+import AboutMe from "../TerminalData/AboutMe";
+import AcreageContour from "../TerminalData/Projects/AcreageContour";
+import DiscordDistances from "../TerminalData/Projects/DiscordDistances";
+import GarbageWrangler from "../TerminalData/Projects/GarbageWrangler";
+import NBodyTool from "../TerminalData/Projects/NBodyTool";
+import NEATCars from "../TerminalData/Projects/NEATCars";
+import RustyRaytracer from "../TerminalData/Projects/RustyRaytracer";
 
 export default function Files() {
   const { windows, setWindows } = useContext(WindowContext);

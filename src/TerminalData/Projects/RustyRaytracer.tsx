@@ -1,5 +1,5 @@
 import { Theme } from "@/util/Theme";
-import TerminalData from "../";
+import TerminalData from "..";
 import { EmphasizedText, Link, Text } from "@/styles/TerminalStyle";
 
 const getCommand = (
@@ -59,7 +59,6 @@ const getBody = (theme: Theme) => (
 export default function RustyRaytracer(startX?: number, startY?: number) {
   return new TerminalData(
     "/RustyRaytracer.png",
-    "~",
     "Raytraced spheres",
     getCommand,
     getBody,

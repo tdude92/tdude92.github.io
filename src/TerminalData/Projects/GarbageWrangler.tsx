@@ -1,5 +1,5 @@
 import { Theme } from "@/util/Theme";
-import TerminalData from "../";
+import TerminalData from "..";
 import { EmphasizedText, Link, Text } from "@/styles/TerminalStyle";
 
 const getCommand = (
@@ -51,7 +51,6 @@ const getBody = (theme: Theme) => (
 export default function GarbageWrangler(startX?: number, startY?: number) {
   return new TerminalData(
     "/GarbageWrangler.png",
-    "~",
     "In-game screenshot of Garbage Wrangler",
     getCommand,
     getBody,

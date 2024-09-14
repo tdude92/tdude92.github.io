@@ -4,7 +4,7 @@ import { LuMoonStar, LuSun } from "react-icons/lu";
 import { ThemeContext } from "@/pages/ThemeProvider";
 import { DARK_MODE, LIGHT_MODE, Theme } from "@/util/Theme";
 import { WindowContext } from "@/pages/WindowManager";
-import TerminalData from "./TerminalData";
+import TerminalData from "@/TerminalData";
 
 const TitleBarDiv = styled.div<{ $theme: Theme }>`
   background-color: ${(props) =>
