@@ -3,17 +3,16 @@ import * as THREE from "three";
 import { disposeMesh } from "@/three/util";
 
 class Wave {
-  constructor(
-    mesh: THREE.Mesh,
-    waveWidth: number,
-    screenWidth: number,
-    x: number
-  ) {
+  constructor(mesh: THREE.Mesh, period: number, x: number, xVelocity: number) {
     this.mesh = mesh;
-    this.waveWidth = waveWidth;
-    this.screenWidth = screenWidth;
+    this.period = period;
     this.x = 0;
     this.phaseShift(x);
+    this.xVelocity = xVelocity;
+  }
+
+  update() {
+    this.phaseShift(this.xVelocity);
   }
 
   phaseShift(x: number) {
@@ -21,16 +20,16 @@ class Wave {
 
     // wrap wave around if mesh is too far right
     if (this.x > -1) {
-      this.x = -this.waveWidth / 2 + this.x - 1;
+      this.x -= this.period;
     }
 
     this.mesh.position.setX(this.x);
   }
 
   mesh: THREE.Mesh;
-  waveWidth: number;
-  screenWidth: number;
+  period: number;
   x: number;
+  xVelocity: number;
 }
 
 export class Wallpaper {
@@ -51,6 +50,7 @@ export class Wallpaper {
     // waves
     for (let i = 0; i < nWaves; ++i) {
       const color = gradientPalette[i];
+      const xVelocity = theme.wallpaperTheme.xVelocity.getFloat();
       const yPerturbation = theme.wallpaperTheme.yPerturbation.getFloat();
       const amplitude = theme.wallpaperTheme.waveAmplitude.getFloat();
       const frequency = theme.wallpaperTheme.waveFrequency.getFloat();
@@ -78,7 +78,9 @@ export class Wallpaper {
       });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.position.set(-1, (2 / nWaves) * (i + 0.5) - 1 + yPerturbation, -i);
-      this.waves.push(new Wave(mesh, waveWidth, 2, -1));
+      this.waves.push(
+        new Wave(mesh, period, -1 + Math.random() * period, xVelocity)
+      );
     }
 
     // background

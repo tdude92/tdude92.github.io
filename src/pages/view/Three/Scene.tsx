@@ -27,7 +27,8 @@ export default function Scene() {
     wallpaperRef.current = wallpaper;
 
     wallpaperRef.current.generate(scene, theme);
-    const frameId = animate(renderer, scene, camera);
+    console.log(wallpaper);
+    const frameId = animate(renderer, scene, camera, wallpaper);
 
     return () => {
       if (mountRef.current) {

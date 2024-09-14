@@ -33,13 +33,16 @@ export function createWallpaper() {
 export function animate(
   renderer: THREE.Renderer,
   scene: THREE.Scene,
-  camera: THREE.Camera
-  //wallpaper: Wallpaper
+  camera: THREE.Camera,
+  wallpaper: Wallpaper
 ) {
   function animation() {
     const frameId = requestAnimationFrame(animation);
 
     // Manipulate wallpaper here
+    wallpaper.waves.forEach((wave) => {
+      wave.update();
+    });
 
     renderer.render(scene, camera);
 
