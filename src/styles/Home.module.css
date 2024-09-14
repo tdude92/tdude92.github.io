@@ -8,8 +8,4 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
-  background-image: url(/ubuntu_2204_wallpaper_2880x1620.jpg);
-  background-size: cover;
-  background-position: center;
 }
