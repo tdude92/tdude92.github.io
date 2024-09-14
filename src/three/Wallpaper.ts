@@ -20,6 +20,7 @@ export class Wallpaper {
     // waves
     for (let i = 0; i < nWaves; ++i) {
       const color = gradientPalette[i];
+      const yPerturbation = theme.wallpaperTheme.yPerturbation.getFloat();
       const amplitude = theme.wallpaperTheme.waveAmplitude.getFloat();
       const frequency = theme.wallpaperTheme.waveFrequency.getFloat();
       const period = (2 * Math.PI) / frequency;
@@ -46,11 +47,7 @@ export class Wallpaper {
         side: THREE.DoubleSide,
       });
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(
-        -1,
-        (2 / nWaves) * (i + 0.5) - 1 + Math.random() * 0.1,
-        -i
-      );
+      mesh.position.set(-1, (2 / nWaves) * (i + 0.5) - 1 + yPerturbation, -i);
       this.shapes.push(mesh);
     }
 

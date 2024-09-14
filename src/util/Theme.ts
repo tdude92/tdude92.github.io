@@ -1,5 +1,5 @@
 import { Color } from "three";
-import { NormalRandomVariable } from "./Random";
+import { NormalRandomVariable, UniformRandomVariable } from "./Random";
 
 class TerminalTheme {
   constructor(options: {
@@ -44,11 +44,13 @@ class TerminalTheme {
 class WallpaperTheme {
   constructor(options: {
     nWaves: NormalRandomVariable;
+    yPerturbation: UniformRandomVariable;
     waveAmplitude: NormalRandomVariable;
     waveFrequency: NormalRandomVariable;
     gradientPalette: Color[];
   }) {
     this.nWaves = options.nWaves;
+    this.yPerturbation = options.yPerturbation;
     this.waveAmplitude = options.waveAmplitude;
     this.waveFrequency = options.waveFrequency;
     this.gradientPalette = options.gradientPalette;
@@ -77,6 +79,7 @@ class WallpaperTheme {
   }
 
   nWaves: NormalRandomVariable;
+  yPerturbation: UniformRandomVariable;
   waveAmplitude: NormalRandomVariable;
   waveFrequency: NormalRandomVariable;
   gradientPalette: Color[];
@@ -125,6 +128,7 @@ namespace TerminalTheme {
 namespace WallpaperTheme {
   export const LIGHT_MODE = new WallpaperTheme({
     nWaves: new NormalRandomVariable(12, 8),
+    yPerturbation: new UniformRandomVariable(0, 0.1),
     waveAmplitude: new NormalRandomVariable(0.05, 0.1),
     waveFrequency: new NormalRandomVariable(5, 10),
     gradientPalette: [
@@ -136,6 +140,7 @@ namespace WallpaperTheme {
 
   export const DARK_MODE = new WallpaperTheme({
     nWaves: new NormalRandomVariable(6, 4),
+    yPerturbation: new UniformRandomVariable(0.2, 0.3),
     waveAmplitude: new NormalRandomVariable(0.1, 0.1),
     waveFrequency: new NormalRandomVariable(3, 6),
     gradientPalette: [

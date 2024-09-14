@@ -3,6 +3,25 @@ interface RandomVariable {
   getInteger(): number;
 }
 
+export class UniformRandomVariable implements RandomVariable {
+  constructor(min: number, max: number) {
+    // all inclusive
+    this.min = min;
+    this.max = max;
+  }
+
+  getFloat() {
+    return Math.random() * (this.max - this.min) + this.min;
+  }
+
+  getInteger() {
+    return Math.round(this.getFloat());
+  }
+
+  min: number;
+  max: number;
+}
+
 export class NormalRandomVariable implements RandomVariable {
   constructor(mean: number, stddev: number) {
     this.mean = mean;
