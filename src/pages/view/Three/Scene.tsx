@@ -7,7 +7,7 @@ import {
   createScene,
   createWallpaper,
   Wallpaper,
-} from "@/util/ThreeSetup";
+} from "@/three";
 import { ThemeContext } from "@/pages/ThemeProvider";
 
 export default function Scene() {
