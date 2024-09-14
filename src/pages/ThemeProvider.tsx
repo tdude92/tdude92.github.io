@@ -13,7 +13,7 @@ const defaultContext = {
 
 export const ThemeContext = createContext(defaultContext);
 
-export function ThemeProvider({ children }: ThemeContextProps) {
+export default function ThemeProvider({ children }: ThemeContextProps) {
   const [theme, setTheme] = useState(defaultContext.theme);
 
   return (

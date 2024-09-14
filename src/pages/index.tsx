@@ -3,7 +3,7 @@ import { Ubuntu_Mono } from "next/font/google";
 
 import style from "@/styles/Home.module.css";
 import Terminal from "./view/Terminal";
-import { ThemeProvider } from "./ThemeProvider";
+import ThemeProvider from "./ThemeProvider";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
