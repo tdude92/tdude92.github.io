@@ -94,10 +94,12 @@ export default function TitleBar(props: TitleBarProps) {
   const { theme, setTheme } = useContext(ThemeContext);
   const { windows, setWindows } = useContext(WindowContext);
 
-  const handleCloseButtionClicked = () => {
-    console.log("before:", windows);
+  const handleCloseButtonClicked = () => {
     setWindows(windows.filter((terminalData) => terminalData != props.data));
-    console.log("after:", windows);
+  };
+
+  const handleMinimizeButtonClicked = () => {
+    setWindows(windows.filter((terminalData) => terminalData != props.data));
   };
 
   const useToggleThemeButton = (theme: Theme) => {
@@ -132,8 +134,8 @@ export default function TitleBar(props: TitleBarProps) {
 
   return (
     <TitleBarDiv $theme={theme}>
-      <CloseButton $theme={theme} onClick={handleCloseButtionClicked} />
-      <MinimizeButton $theme={theme} />
+      <CloseButton $theme={theme} onClick={handleCloseButtonClicked} />
+      <MinimizeButton $theme={theme} onClick={handleMinimizeButtonClicked} />
       <MaximizeButton $theme={theme} />
       <Text $theme={theme}>trevor@PersonalSite: ~</Text>
       {useToggleThemeButton(theme)}
