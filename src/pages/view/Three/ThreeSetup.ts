@@ -1,4 +1,54 @@
+import { Theme } from "@/util/Theme";
 import * as THREE from "three";
+
+function disposeMesh(mesh: THREE.Mesh) {
+  mesh.geometry.dispose();
+  if (mesh.material instanceof Array) {
+    mesh.material.forEach((m) => {
+      m.dispose();
+    });
+  } else {
+    mesh.material.dispose();
+  }
+  mesh.removeFromParent();
+}
+
+export class Wallpaper {
+  constructor() {
+    this.shapes = [];
+  }
+
+  generate(scene: THREE.Scene, theme: Theme) {
+    for (const shape of this.shapes) {
+      disposeMesh(shape);
+    }
+    this.shapes = [];
+
+    const nWaves = theme.wallpaperTheme.nWaves.getInteger();
+    const gradientPalette =
+      theme.wallpaperTheme.getResampledGradientPalette(nWaves);
+    for (let i = 0; i < nWaves; ++i) {
+      const color = gradientPalette[i];
+      //const amplitude = theme.wallpaperTheme.waveAmplitude.getFloat();
+      //const frequency = theme.wallpaperTheme.waveFrequency.getFloat();
+
+      const geometry = new THREE.PlaneGeometry(2, 2 / nWaves);
+      const material = new THREE.MeshBasicMaterial({
+        color: color.getHex(),
+        side: THREE.DoubleSide,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, (2 / nWaves) * (i + 0.5) - 1, 0);
+      this.shapes.push(mesh);
+    }
+
+    for (const shape of this.shapes) {
+      scene.add(shape);
+    }
+  }
+
+  shapes: THREE.Mesh[];
+}
 
 export const createScene = () => new THREE.Scene();
 
@@ -21,17 +71,20 @@ export const createCube = () => {
   return new THREE.Mesh(geometry, material);
 };
 
+export const createWallpaper = () => {
+  return new Wallpaper();
+};
+
 export const animate = (
   renderer: THREE.Renderer,
   scene: THREE.Scene,
-  camera: THREE.Camera,
-  cube: THREE.Mesh
+  camera: THREE.Camera
+  //wallpaper: Wallpaper
 ) => {
   function animation() {
     const frameId = requestAnimationFrame(animation);
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    // Manipulate wallpaper here
 
     renderer.render(scene, camera);
 

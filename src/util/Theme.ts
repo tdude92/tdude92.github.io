@@ -1,4 +1,5 @@
 import { Color } from "three";
+import { NormalRandomVariable } from "./Random";
 
 class TerminalTheme {
   constructor(options: {
@@ -40,12 +41,55 @@ class TerminalTheme {
   titleBarButton3Color: Color;
 }
 
+class WallpaperTheme {
+  constructor(options: {
+    nWaves: NormalRandomVariable;
+    waveAmplitude: NormalRandomVariable;
+    waveFrequency: NormalRandomVariable;
+    gradientPalette: Color[];
+  }) {
+    this.nWaves = options.nWaves;
+    this.waveAmplitude = options.waveAmplitude;
+    this.waveFrequency = options.waveFrequency;
+    this.gradientPalette = options.gradientPalette;
+  }
+
+  getResampledGradientPalette(nColors: number): Color[] {
+    const resampledGradientPalette = [];
+    for (let i = 0; i < nColors; ++i) {
+      const iResampled =
+        (i / (nColors - 1)) * (this.gradientPalette.length - 1);
+      const j = Math.floor(iResampled);
+      const alpha = iResampled - j;
+      if (j >= this.gradientPalette.length - 1) {
+        resampledGradientPalette.push(this.gradientPalette.at(-1)!);
+      } else {
+        const sampledColor = new Color();
+        sampledColor.lerpColors(
+          this.gradientPalette[j],
+          this.gradientPalette[j + 1],
+          alpha
+        );
+        resampledGradientPalette.push(sampledColor);
+      }
+    }
+    return resampledGradientPalette;
+  }
+
+  nWaves: NormalRandomVariable;
+  waveAmplitude: NormalRandomVariable;
+  waveFrequency: NormalRandomVariable;
+  gradientPalette: Color[];
+}
+
 export class Theme {
-  constructor(terminalTheme: TerminalTheme) {
+  constructor(terminalTheme: TerminalTheme, wallpaperTheme: WallpaperTheme) {
     this.terminalTheme = terminalTheme;
+    this.wallpaperTheme = wallpaperTheme;
   }
 
   terminalTheme: TerminalTheme;
+  wallpaperTheme: WallpaperTheme;
 }
 
 namespace TerminalTheme {
@@ -64,19 +108,50 @@ namespace TerminalTheme {
   });
 
   export const DARK_MODE = new TerminalTheme({
-    bodyBackgroundColor: new Color("#2e3440"),
-    bodyTextColor: new Color("#d8dee9"),
-    bodyEmphasizedTextColor: new Color("#88c0d0"),
-    bodyUsernameTextColor: new Color("#a3be8c"),
+    bodyBackgroundColor: new Color("#1e1a1d"),
+    bodyTextColor: new Color("#e3d8dd"),
+    bodyEmphasizedTextColor: new Color("#d5b4c0"),
+    bodyUsernameTextColor: new Color("#b6d094"),
     bodyCWDTextColor: new Color("#5e81ac"),
     bodyTextHighlightColor: new Color("#434c5e"),
-    titleBarBackgroundColor: new Color("#d8dee9"),
-    titleBarTextColor: new Color("#4c566a"),
-    titleBarButton1Color: new Color("#bf616a"),
-    titleBarButton2Color: new Color("#d7b470"),
-    titleBarButton3Color: new Color("#a3be8c"),
+    titleBarBackgroundColor: new Color("#e0d5dc"),
+    titleBarTextColor: new Color("#484953"),
+    titleBarButton1Color: new Color("#bc424e"),
+    titleBarButton2Color: new Color("#e0aa3f"),
+    titleBarButton3Color: new Color("#56a775"),
   });
 }
 
-export const LIGHT_MODE = new Theme(TerminalTheme.LIGHT_MODE);
-export const DARK_MODE = new Theme(TerminalTheme.DARK_MODE);
+namespace WallpaperTheme {
+  export const LIGHT_MODE = new WallpaperTheme({
+    nWaves: new NormalRandomVariable(12, 8),
+    waveAmplitude: new NormalRandomVariable(0.1, 0),
+    waveFrequency: new NormalRandomVariable(0.1, 0),
+    gradientPalette: [
+      new Color("#ea6e56"),
+      new Color("#c82662"),
+      new Color("#78216f"),
+    ],
+  });
+
+  export const DARK_MODE = new WallpaperTheme({
+    nWaves: new NormalRandomVariable(6, 4),
+    waveAmplitude: new NormalRandomVariable(0.1, 0),
+    waveFrequency: new NormalRandomVariable(0.1, 0),
+    gradientPalette: [
+      new Color("#683a68"),
+      new Color("#412752"),
+      new Color("#2d162c"),
+    ],
+  });
+}
+
+export const LIGHT_MODE = new Theme(
+  TerminalTheme.LIGHT_MODE,
+  WallpaperTheme.LIGHT_MODE
+);
+
+export const DARK_MODE = new Theme(
+  TerminalTheme.DARK_MODE,
+  WallpaperTheme.DARK_MODE
+);

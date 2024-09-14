@@ -3,15 +3,17 @@ import * as THREE from "three";
 import {
   animate,
   createCamera,
-  createCube,
   createRenderer,
   createScene,
+  createWallpaper,
+  Wallpaper,
 } from "./ThreeSetup";
 import { ThemeContext } from "@/pages/ThemeProvider";
 
 export default function Scene() {
   const mountRef = useRef<HTMLDivElement>(null!);
-  const cubeRef = useRef<THREE.Mesh>(null!);
+  const sceneRef = useRef<THREE.Scene>(null!);
+  const wallpaperRef = useRef<Wallpaper>(null!);
 
   const { theme } = useContext(ThemeContext);
 
@@ -19,23 +21,25 @@ export default function Scene() {
     const scene = createScene();
     const camera = createCamera();
     const renderer = createRenderer(mountRef.current);
-    const cube = createCube();
+    const wallpaper = createWallpaper();
 
-    cubeRef.current = cube;
-    scene.add(cube);
-    const frameId = animate(renderer, scene, camera, cube);
+    sceneRef.current = scene;
+    wallpaperRef.current = wallpaper;
+
+    wallpaperRef.current.generate(scene, theme);
+    const frameId = animate(renderer, scene, camera);
 
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
       cancelAnimationFrame(frameId);
     };
   }, []);
 
   useEffect(() => {
-    if (cubeRef.current) {
-      (cubeRef.current.material as THREE.MeshBasicMaterial).color.set(
-        theme.terminalTheme.bodyBackgroundColor
-      );
+    if (sceneRef.current && wallpaperRef.current) {
+      wallpaperRef.current.generate(sceneRef.current, theme);
     }
   }, [theme]);
 
