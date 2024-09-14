@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Ubuntu_Mono } from "next/font/google";
 
 import style from "@/styles/Home.module.css";
+import Scene from "./view/Three/Scene";
 import Terminal from "./view/Terminal";
 import ThemeProvider from "./ThemeProvider";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <ThemeProvider>
         <main className={`${style.main} ${ubuntuMonoFont.className}`}>
           <Terminal />
+          <Scene />
         </main>
       </ThemeProvider>
     </>
