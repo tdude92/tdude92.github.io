@@ -21,7 +21,7 @@ export default function TerminalBody(props: TerminalBodyProps) {
     >
       <Text $theme={theme}>
         <UsernameTextSpan $theme={theme}>trevor@PersonalSite</UsernameTextSpan>:
-        <CWDTextSpan $theme={theme}>~</CWDTextSpan>${" "}
+        <CWDTextSpan $theme={theme}>{props.data.terminalPath}</CWDTextSpan>${" "}
         {props.data.getCommand(theme)}
       </Text>
       <br />
@@ -30,7 +30,8 @@ export default function TerminalBody(props: TerminalBodyProps) {
           src={props.data.imagePath}
           width={274}
           height={274}
-          alt="Photograph of televisions"
+          alt={props.data.imageAltText}
+          priority
         />
         <div style={{ marginTop: "-4px" }}>{props.data.getBody(theme)}</div>
       </div>

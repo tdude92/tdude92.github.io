@@ -85,6 +85,7 @@ const getBody = (theme: Theme) => (
 export default function AboutMe() {
   return new TerminalData(
     "/TVs_400x400.jpg",
+    "~",
     "Photograph of television artwork",
     getCommand,
     getBody

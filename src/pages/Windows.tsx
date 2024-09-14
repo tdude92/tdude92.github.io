@@ -7,7 +7,12 @@ export default function Windows() {
   return (
     <>
       {windows.map((terminalData, idx) => (
-        <Terminal key={idx} data={terminalData} />
+        <Terminal
+          key={idx}
+          data={terminalData}
+          x={terminalData.startX}
+          y={terminalData.startY}
+        />
       ))}
     </>
   );

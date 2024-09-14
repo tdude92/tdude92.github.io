@@ -8,6 +8,8 @@ import TerminalData from "./TerminalData";
 
 interface TerminalProps {
   data: TerminalData;
+  x?: number;
+  y?: number;
 }
 
 export default function Terminal(props: TerminalProps) {
@@ -15,8 +17,8 @@ export default function Terminal(props: TerminalProps) {
   const [terminalPositionY, setTerminalPositionY] = useState(0);
 
   useEffect(() => {
-    setTerminalPositionX(window.innerWidth / 2 - 400);
-    setTerminalPositionY(window.innerHeight / 2 - 225);
+    setTerminalPositionX(props.x ?? window.innerWidth / 2 - 400);
+    setTerminalPositionY(props.y ?? window.innerHeight / 2 - 225);
   }, []);
 
   return (
