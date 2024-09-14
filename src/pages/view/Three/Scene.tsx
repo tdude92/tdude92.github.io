@@ -6,6 +6,7 @@ import {
   createRenderer,
   createScene,
   createWallpaper,
+  onWindowResize,
   Wallpaper,
 } from "@/three";
 import { ThemeContext } from "@/pages/ThemeProvider";
@@ -28,6 +29,10 @@ export default function Scene() {
 
     wallpaperRef.current.generate(scene, theme);
     const frameId = animate(renderer, scene, camera, wallpaper);
+
+    window.addEventListener("resize", () => {
+      onWindowResize(renderer);
+    });
 
     return () => {
       if (mountRef.current) {

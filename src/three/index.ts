@@ -50,3 +50,7 @@ export function animate(
   }
   return animation();
 }
+
+export function onWindowResize(renderer: THREE.Renderer) {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
