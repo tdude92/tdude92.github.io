@@ -130,9 +130,9 @@ namespace TerminalTheme {
 
 namespace WallpaperTheme {
   export const LIGHT_MODE = new WallpaperTheme({
-    nWaves: new NormalRandomVariable(12, 8),
-    xVelocity: new NormalRandomVariable(0.0005, 0.005),
-    yPerturbation: new UniformRandomVariable(0, 0.1),
+    nWaves: new NormalRandomVariable(10, 4),
+    xVelocity: new NormalRandomVariable(0.000045, 0.004),
+    yPerturbation: new UniformRandomVariable(0.05, 0.2),
     waveAmplitude: new NormalRandomVariable(0.05, 0.1),
     waveFrequency: new NormalRandomVariable(5, 10),
     gradientPalette: [
@@ -144,7 +144,7 @@ namespace WallpaperTheme {
 
   export const DARK_MODE = new WallpaperTheme({
     nWaves: new NormalRandomVariable(6, 4),
-    xVelocity: new NormalRandomVariable(0.0005, 0.005),
+    xVelocity: new NormalRandomVariable(0.000075, 0.002),
     yPerturbation: new UniformRandomVariable(0.2, 0.3),
     waveAmplitude: new NormalRandomVariable(0.1, 0.1),
     waveFrequency: new NormalRandomVariable(3, 6),
