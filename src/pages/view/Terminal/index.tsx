@@ -26,6 +26,7 @@ export default function Terminal(props: TerminalProps) {
         setTerminalPositionX(d.x);
         setTerminalPositionY(d.y);
       }}
+      enableResizing={false}
     >
       <div className={style.root}>
         <TitleBar data={props.data} />
