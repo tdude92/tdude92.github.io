@@ -88,14 +88,36 @@ class WallpaperTheme {
   gradientPalette: Color[];
 }
 
+class FileTheme {
+  constructor(options: {
+    iconColor: Color;
+    nameColor: Color;
+    highlightColor: string;
+  }) {
+    this.iconColor = options.iconColor;
+    this.nameColor = options.nameColor;
+    this.highlightColor = options.highlightColor;
+  }
+
+  iconColor: Color;
+  nameColor: Color;
+  highlightColor: string;
+}
+
 export class Theme {
-  constructor(terminalTheme: TerminalTheme, wallpaperTheme: WallpaperTheme) {
+  constructor(
+    terminalTheme: TerminalTheme,
+    wallpaperTheme: WallpaperTheme,
+    fileTheme: FileTheme
+  ) {
     this.terminalTheme = terminalTheme;
     this.wallpaperTheme = wallpaperTheme;
+    this.fileTheme = fileTheme;
   }
 
   terminalTheme: TerminalTheme;
   wallpaperTheme: WallpaperTheme;
+  fileTheme: FileTheme;
 }
 
 namespace TerminalTheme {
@@ -156,12 +178,28 @@ namespace WallpaperTheme {
   });
 }
 
+namespace FileTheme {
+  export const LIGHT_MODE = new FileTheme({
+    iconColor: new Color("#c9c0c6"),
+    nameColor: new Color("#c9c0c6"),
+    highlightColor: "rgba(94, 76, 67, 0.5)",
+  });
+
+  export const DARK_MODE = new FileTheme({
+    iconColor: new Color("#e3d8dd"),
+    nameColor: new Color("#e3d8dd"),
+    highlightColor: "rgba(67, 76, 94, 0.5)",
+  });
+}
+
 export const LIGHT_MODE = new Theme(
   TerminalTheme.LIGHT_MODE,
-  WallpaperTheme.LIGHT_MODE
+  WallpaperTheme.LIGHT_MODE,
+  FileTheme.LIGHT_MODE
 );
 
 export const DARK_MODE = new Theme(
   TerminalTheme.DARK_MODE,
-  WallpaperTheme.DARK_MODE
+  WallpaperTheme.DARK_MODE,
+  FileTheme.DARK_MODE
 );

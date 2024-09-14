@@ -6,6 +6,7 @@ import Scene from "./view/Three/Scene";
 import ThemeProvider from "./ThemeProvider";
 import WindowProvider from "./WindowManager";
 import Windows from "./Windows";
+import Files from "./Files";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
@@ -25,6 +26,7 @@ export default function Home() {
       <ThemeProvider>
         <WindowProvider>
           <main className={`${style.main} ${ubuntuMonoFont.className}`}>
+            <Files />
             <Windows />
             <Scene />
           </main>
