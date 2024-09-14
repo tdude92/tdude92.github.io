@@ -9,7 +9,7 @@ import {
   SuperComLink,
   Text,
   UWLink,
-} from "../style";
+} from "@/styles/TerminalStyle";
 
 const getCommand = (_: Theme) => <>neofetch</>; // eslint-disable-line @typescript-eslint/no-unused-vars
 

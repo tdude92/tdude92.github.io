@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "@/styles/Terminal.module.css";
 import { ThemeContext } from "@/pages/ThemeProvider";
 import TerminalData from "./TerminalData";
-import { CWDTextSpan, Text, UsernameTextSpan } from "./style";
+import { CWDTextSpan, Text, UsernameTextSpan } from "@/styles/TerminalStyle";
 
 interface TerminalBodyProps {
   data: TerminalData;
