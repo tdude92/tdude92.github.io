@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { LuMoonStar, LuSun } from "react-icons/lu";
 import { ThemeContext } from "@/pages/ThemeProvider";
 import { DARK_MODE, LIGHT_MODE, Theme } from "@/util/Theme";
+import { WindowContext } from "@/pages/WindowManager";
+import TerminalData from "./TerminalData";
 
 const TitleBarDiv = styled.div<{ $theme: Theme }>`
   background-color: ${(props) =>
@@ -84,8 +86,19 @@ const LightModeButton = styled(LuSun)<{ $theme: Theme }>`
   }
 `;
 
-export default function TitleBar() {
+interface TitleBarProps {
+  data: TerminalData;
+}
+
+export default function TitleBar(props: TitleBarProps) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { windows, setWindows } = useContext(WindowContext);
+
+  const handleCloseButtionClicked = () => {
+    console.log("before:", windows);
+    setWindows(windows.filter((terminalData) => terminalData != props.data));
+    console.log("after:", windows);
+  };
 
   const useToggleThemeButton = (theme: Theme) => {
     switch (theme) {
@@ -119,7 +132,7 @@ export default function TitleBar() {
 
   return (
     <TitleBarDiv $theme={theme}>
-      <CloseButton $theme={theme} />
+      <CloseButton $theme={theme} onClick={handleCloseButtionClicked} />
       <MinimizeButton $theme={theme} />
       <MaximizeButton $theme={theme} />
       <Text $theme={theme}>trevor@PersonalSite: ~</Text>

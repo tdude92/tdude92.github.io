@@ -1,12 +1,16 @@
 import { Rnd } from "react-rnd";
 import { useState, useEffect } from "react";
 
+import style from "@/styles/Terminal.module.css";
 import TitleBar from "./TitleBar";
 import TerminalBody from "./TerminalBody";
+import TerminalData from "./TerminalData";
 
-import style from "@/styles/Terminal.module.css";
+interface TerminalProps {
+  data: TerminalData;
+}
 
-export default function Terminal() {
+export default function Terminal(props: TerminalProps) {
   const [terminalPositionX, setTerminalPositionX] = useState(0);
   const [terminalPositionY, setTerminalPositionY] = useState(0);
 
@@ -24,8 +28,8 @@ export default function Terminal() {
       }}
     >
       <div className={style.root}>
-        <TitleBar />
-        <TerminalBody />
+        <TitleBar data={props.data} />
+        <TerminalBody data={props.data} />
       </div>
     </Rnd>
   );

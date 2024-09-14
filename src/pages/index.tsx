@@ -3,8 +3,9 @@ import { Ubuntu_Mono } from "next/font/google";
 
 import style from "@/styles/Home.module.css";
 import Scene from "./view/Three/Scene";
-import Terminal from "./view/Terminal";
 import ThemeProvider from "./ThemeProvider";
+import WindowProvider from "./WindowManager";
+import Windows from "./Windows";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
@@ -22,10 +23,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
-        <main className={`${style.main} ${ubuntuMonoFont.className}`}>
-          <Terminal />
-          <Scene />
-        </main>
+        <WindowProvider>
+          <main className={`${style.main} ${ubuntuMonoFont.className}`}>
+            <Windows />
+            <Scene />
+          </main>
+        </WindowProvider>
       </ThemeProvider>
     </>
   );

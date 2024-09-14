@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 import { LIGHT_MODE, Theme } from "@/util/Theme";
 
-type ThemeContextProps = {
+type ThemeProviderProps = {
   children: React.ReactNode;
 };
 
@@ -13,7 +13,7 @@ const defaultContext = {
 
 export const ThemeContext = createContext(defaultContext);
 
-export default function ThemeProvider({ children }: ThemeContextProps) {
+export default function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState(defaultContext.theme);
 
   return (
