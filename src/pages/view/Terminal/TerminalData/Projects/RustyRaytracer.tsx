@@ -1,8 +1,10 @@
 import { Theme } from "@/util/Theme";
 import TerminalData from "../";
-import { EmphasizedText, EmphasizedTextSpan, Link, Text } from "../../style";
+import { EmphasizedText, Link, Text } from "../../style";
 
-const getCommand = (_: Theme) => (
+const getCommand = (
+  _: Theme // eslint-disable-line @typescript-eslint/no-unused-vars
+) => (
   <>
     git clone&nbsp;
     <Link
@@ -49,7 +51,7 @@ const getBody = (theme: Theme) => (
     <br />
     <Text $theme={theme}>
       Give it a look! There are demo scenes that render pretty quickly given
-      that it's a CPU software raytracer.
+      that it&#39;s a CPU software raytracer.
     </Text>
   </>
 );

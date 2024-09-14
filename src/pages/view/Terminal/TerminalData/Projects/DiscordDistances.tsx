@@ -1,8 +1,10 @@
 import { Theme } from "@/util/Theme";
 import TerminalData from "../";
-import { EmphasizedText, EmphasizedTextSpan, Link, Text } from "../../style";
+import { EmphasizedText, Link, Text } from "../../style";
 
-const getCommand = (_: Theme) => (
+const getCommand = (
+  _: Theme // eslint-disable-line @typescript-eslint/no-unused-vars
+) => (
   <>
     git clone&nbsp;
     <Link
@@ -30,8 +32,8 @@ const getBody = (theme: Theme) => (
       >
         word2vec
       </Link>{" "}
-      finetuning takes unlabelled corpora of text and uses them to "learn" the
-      embeddings for words contained within the texts.
+      finetuning takes unlabelled corpora of text and uses them to
+      &#34;learn&#34; the embeddings for words contained within the texts.
     </Text>
     <br />
     <Text $theme={theme}>

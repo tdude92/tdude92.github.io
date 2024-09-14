@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import File from "./File";
 import { WindowContext } from "./WindowManager";
 import AboutMe from "./view/Terminal/TerminalData/AboutMe";

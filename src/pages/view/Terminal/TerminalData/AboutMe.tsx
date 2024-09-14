@@ -11,7 +11,7 @@ import {
   UWLink,
 } from "../style";
 
-const getCommand = (_: Theme) => <>neofetch</>;
+const getCommand = (_: Theme) => <>neofetch</>; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 const getBody = (theme: Theme) => (
   <>
