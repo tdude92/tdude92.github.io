@@ -30,7 +30,7 @@ const getBody = (theme: Theme) => (
     <br />
     <Text $theme={theme}>
       In brute-force gravity sims, each particle must be compared with every
-      other particles, which results in quadratic running time. I used the{" "}
+      other particle, resulting in quadratic running time. I used the{" "}
       <Link
         href="https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation"
         target="_blank"
