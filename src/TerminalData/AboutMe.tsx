@@ -59,7 +59,14 @@ const getBody = (theme: Theme) => (
     <br />
     <Text $theme={theme}>
       <EmphasizedTextSpan $theme={theme}>Experience:&nbsp;</EmphasizedTextSpan>
-      Previously @&nbsp;
+      Prev. @&nbsp;
+      <XLink
+        href="https://x.com/"
+        target="_blank"
+      >
+        X
+      </XLink>
+      ,&nbsp;
       <ArupLink
         href="https://www.arup.com/services/digital-solutions-and-tools/massmotion/"
         target="_blank"
@@ -77,7 +84,7 @@ const getBody = (theme: Theme) => (
     </Text>
     <br />
     <EmphasizedText $theme={theme}>
-      Seeking ☃️W2025 + 🏖️S2025 Internships
+      Seeking 🏖️S2025 + 🍂F2025 Internships
     </EmphasizedText>
   </>
 );
