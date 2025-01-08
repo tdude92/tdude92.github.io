@@ -59,7 +59,7 @@ const getBody = (theme: Theme) => (
     <br />
     <Text $theme={theme}>
       <EmphasizedTextSpan $theme={theme}>Experience:&nbsp;</EmphasizedTextSpan>
-      Previously @&nbsp;
+      Prev. @&nbsp;
       <XLink
         href="https://x.com/"
         target="_blank"
