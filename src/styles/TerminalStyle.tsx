@@ -39,6 +39,10 @@ export const UWLink = styled(Link)`
   color: #c2a951;
 `;
 
+export const XLink = styled(Link)`
+  color: #ffffff;
+`;
+
 export const ArupLink = styled(Link)`
   color: #e61e28;
 `;
