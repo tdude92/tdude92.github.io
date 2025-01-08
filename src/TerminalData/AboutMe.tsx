@@ -1,6 +1,7 @@
 import { Theme } from "@/util/Theme";
 import TerminalData from ".";
 import {
+  XLink,
   ArupLink,
   DropbaseLink,
   EmphasizedText,
