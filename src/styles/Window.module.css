@@ -10,4 +10,29 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 0px;
+
+  transform-origin: bottom center;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* Applied to the draggable wrapper. Hidden only once the shrink animation
+   has finished, so the window can't be clicked or tabbed into meanwhile. */
+.minimized {
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s 0.2s;
+}
+
+.minimized .root {
+  transform: translateY(40%) scale(0.5);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .minimized {
+    transition: none;
+  }
 }

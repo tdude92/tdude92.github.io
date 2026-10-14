@@ -97,14 +97,14 @@ interface TitleBarProps {
 
 export default function TitleBar(props: TitleBarProps) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { closeWindow } = useContext(WindowContext);
+  const { closeWindow, minimizeWindow } = useContext(WindowContext);
 
   const handleCloseButtonClicked = () => {
     closeWindow(props.id);
   };
 
   const handleMinimizeButtonClicked = () => {
-    closeWindow(props.id);
+    minimizeWindow(props.id);
   };
 
   const useToggleThemeButton = (theme: Theme) => {

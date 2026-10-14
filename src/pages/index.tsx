@@ -7,6 +7,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import WindowProvider from "@/components/WindowManager";
 import Windows from "@/components/Windows";
 import Desktop from "@/components/Desktop";
+import Taskbar from "@/components/Taskbar";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
@@ -28,6 +29,7 @@ export default function Home() {
           <main className={`${style.main} ${ubuntuMonoFont.className}`}>
             <Desktop />
             <Windows />
+            <Taskbar />
             <Scene />
           </main>
         </WindowProvider>
