@@ -13,11 +13,13 @@ interface WindowProps {
 
 export default function Window(props: WindowProps) {
   const { focusWindow } = useContext(WindowContext);
-  const { id, x, y, z } = props.state;
+  const { id, x, y, z, minimized } = props.state;
 
   return (
     <Rnd
       default={{ x, y, width: "auto", height: "auto" }}
+      // Minimized windows stay mounted so they keep their position and state.
+      className={minimized ? style.minimized : undefined}
       style={{ zIndex: z }}
       onMouseDown={() => focusWindow(id)}
       enableResizing={false}
