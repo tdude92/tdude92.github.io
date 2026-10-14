@@ -8,4 +8,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+
+  /* Shown until the three.js wallpaper has been drawn. */
+  background-color: #78216f;
 }

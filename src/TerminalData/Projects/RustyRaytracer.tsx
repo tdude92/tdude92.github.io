@@ -56,13 +56,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function RustyRaytracer(startX?: number, startY?: number) {
+export default function RustyRaytracer() {
   return new TerminalData(
     "/RustyRaytracer.png",
     "Raytraced spheres",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }

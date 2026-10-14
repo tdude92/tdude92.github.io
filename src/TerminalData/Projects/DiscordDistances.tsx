@@ -46,13 +46,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function DiscordDistances(startX?: number, startY?: number) {
+export default function DiscordDistances() {
   return new TerminalData(
     "/DiscordDistances.png",
     "Graph of Discord user texting style distances",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }
