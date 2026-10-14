@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { LuMoonStar, LuSun } from "react-icons/lu";
 import { ThemeContext } from "@/components/ThemeProvider";
-import { DARK_MODE, LIGHT_MODE, Theme } from "@/util/Theme";
+import { Theme } from "@/util/Theme";
 import { WindowContext } from "@/components/WindowManager";
 
 const TitleBarDiv = styled.div<{ $theme: Theme }>`
@@ -56,47 +55,13 @@ const MaximizeButton = styled(WindowButton)<{ $theme: Theme }>`
     props.$theme.terminalTheme.titleBarButton3Color.getStyle()};
 `;
 
-const DarkModeButton = styled(LuMoonStar)<{ $theme: Theme }>`
-  color: ${(props) => props.$theme.terminalTheme.titleBarTextColor.getStyle()};
-  margin-left: auto;
-
-  // disable text selection on fast click
-  user-select: none; /* standard syntax */
-  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-  -moz-user-select: none; /* mozilla browsers */
-  -khtml-user-select: none; /* webkit (konqueror) browsers */
-  -ms-user-select: none; /* IE10+ */
-
-  &:hover {
-    color: #ffffff;
-    cursor: pointer;
-  }
-`;
-
-const LightModeButton = styled(LuSun)<{ $theme: Theme }>`
-  color: ${(props) => props.$theme.terminalTheme.titleBarTextColor.getStyle()};
-  margin-left: auto;
-
-  // disable text selection on fast click
-  user-select: none; /* standard syntax */
-  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-  -moz-user-select: none; /* mozilla browsers */
-  -khtml-user-select: none; /* webkit (konqueror) browsers */
-  -ms-user-select: none; /* IE10+ */
-
-  &:hover {
-    color: #ffffff;
-    cursor: pointer;
-  }
-`;
-
 interface TitleBarProps {
   id: string;
   title: string;
 }
 
 export default function TitleBar(props: TitleBarProps) {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { closeWindow, minimizeWindow } = useContext(WindowContext);
 
   const handleCloseButtonClicked = () => {
@@ -107,43 +72,12 @@ export default function TitleBar(props: TitleBarProps) {
     minimizeWindow(props.id);
   };
 
-  const useToggleThemeButton = (theme: Theme) => {
-    switch (theme) {
-      case LIGHT_MODE: {
-        return (
-          <DarkModeButton
-            $theme={theme}
-            size="1.5em"
-            onClick={() => {
-              setTheme(DARK_MODE);
-            }}
-          />
-        );
-      }
-      case DARK_MODE: {
-        return (
-          <LightModeButton
-            $theme={theme}
-            size="1.5em"
-            onClick={() => {
-              setTheme(LIGHT_MODE);
-            }}
-          />
-        );
-      }
-      default: {
-        <div />;
-      }
-    }
-  };
-
   return (
     <TitleBarDiv $theme={theme}>
       <CloseButton $theme={theme} onClick={handleCloseButtonClicked} />
       <MinimizeButton $theme={theme} onClick={handleMinimizeButtonClicked} />
       <MaximizeButton $theme={theme} />
       <Text $theme={theme}>{props.title}</Text>
-      {useToggleThemeButton(theme)}
     </TitleBarDiv>
   );
 }

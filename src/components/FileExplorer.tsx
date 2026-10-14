@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { TbChevronLeft } from "react-icons/tb";
-import { App, FolderApp } from "@/apps";
+import { App, appearance, FolderApp } from "@/apps";
 import Window from "@/components/Window";
 import { ThemeContext } from "@/components/ThemeProvider";
 import { ExplorerWindowState, WindowContext } from "@/components/WindowManager";
@@ -261,28 +261,31 @@ export default function FileExplorer(props: FileExplorerProps) {
               if (e.target === e.currentTarget) setSelectedId(null);
             }}
           >
-            {folder.children.map((app) => (
-              <Item
-                key={app.id}
-                $theme={theme}
-                $selected={app.id === selectedId}
-                onClick={() => setSelectedId(app.id)}
-                onDoubleClick={() => open(app)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") open(app);
-                }}
-              >
-                <app.icon size="48px" color={iconColor} />
-                <ItemName>{app.name}</ItemName>
-              </Item>
-            ))}
+            {folder.children.map((app) => {
+              const { name, icon: Icon } = appearance(app, theme);
+              return (
+                <Item
+                  key={app.id}
+                  $theme={theme}
+                  $selected={app.id === selectedId}
+                  onClick={() => setSelectedId(app.id)}
+                  onDoubleClick={() => open(app)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") open(app);
+                  }}
+                >
+                  <Icon size="48px" color={iconColor} />
+                  <ItemName>{name}</ItemName>
+                </Item>
+              );
+            })}
           </Grid>
         </Main>
 
         <StatusBar $theme={theme}>
           <span>
             {selected
-              ? `"${selected.name}" selected`
+              ? `"${appearance(selected, theme).name}" selected`
               : `${itemCount} item${itemCount === 1 ? "" : "s"}`}
           </span>
           <span>Double-click to open</span>

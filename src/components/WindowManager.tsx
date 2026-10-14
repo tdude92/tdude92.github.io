@@ -1,5 +1,6 @@
-import React, { createContext, useCallback, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 import { App, FolderApp, TerminalApp } from "@/apps";
+import { ThemeContext } from "@/components/ThemeProvider";
 
 // Must match the window size in Window.module.css.
 const WINDOW_WIDTH = 800;
@@ -37,7 +38,7 @@ type WindowContent =
   | Pick<ExplorerWindowState, "kind" | "path">;
 
 // The app a window is showing, for its name and icon.
-export const windowApp = (w: WindowState): App =>
+export const windowApp = (w: WindowState): TerminalApp | FolderApp =>
   w.kind === "explorer" ? w.path[w.path.length - 1] : w.app;
 
 // The frontmost window that isn't minimized.
@@ -85,32 +86,41 @@ export default function WindowProvider({ children }: WindowManagerProps) {
   // Starts empty so the server-rendered page has no windows: their position
   // depends on the viewport size, which is only known in the browser.
   const [windows, setWindows] = useState<WindowState[]>([]);
+  const { toggleTheme } = useContext(ThemeContext);
 
-  const openApp = useCallback((app: App, parentPath: FolderApp[]) => {
-    setWindows((windows) => {
+  const openApp = useCallback(
+    (app: App, parentPath: FolderApp[]) => {
+      if (app.type === "theme") {
+        toggleTheme();
+        return;
+      }
+
       const content: WindowContent =
         app.type === "folder"
           ? { kind: "explorer", path: [...parentPath, app] }
           : { kind: "terminal", app };
 
-      if (windows.some((w) => w.id === app.id)) {
-        // Already open: bring it to the front instead of opening a copy.
-        return raise(windows, app.id).map((w) =>
-          w.id === app.id ? { ...w, ...content } : w
-        );
-      }
+      setWindows((windows) => {
+        if (windows.some((w) => w.id === app.id)) {
+          // Already open: bring it to the front instead of opening a copy.
+          return raise(windows, app.id).map((w) =>
+            w.id === app.id ? { ...w, ...content } : w
+          );
+        }
 
-      const offset = (windows.length % CASCADE_STEPS) * CASCADE_OFFSET;
-      const desktopHeight = window.innerHeight - TASKBAR_HEIGHT;
-      const x = Math.max(0, (window.innerWidth - WINDOW_WIDTH) / 2) + offset;
-      const y = Math.max(0, (desktopHeight - WINDOW_HEIGHT) / 2) + offset;
-      const z = nextZ(windows);
-      return [
-        ...windows,
-        { id: app.id, x, y, z, minimized: false, ...content },
-      ];
-    });
-  }, []);
+        const offset = (windows.length % CASCADE_STEPS) * CASCADE_OFFSET;
+        const desktopHeight = window.innerHeight - TASKBAR_HEIGHT;
+        const x = Math.max(0, (window.innerWidth - WINDOW_WIDTH) / 2) + offset;
+        const y = Math.max(0, (desktopHeight - WINDOW_HEIGHT) / 2) + offset;
+        const z = nextZ(windows);
+        return [
+          ...windows,
+          { id: app.id, x, y, z, minimized: false, ...content },
+        ];
+      });
+    },
+    [toggleTheme]
+  );
 
   const closeWindow = useCallback((id: string) => {
     setWindows((windows) => windows.filter((w) => w.id !== id));

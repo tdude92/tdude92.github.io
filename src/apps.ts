@@ -7,9 +7,12 @@ import {
   TbFolderFilled,
   TbGalaxy,
   TbHomeFilled,
+  TbMoonFilled,
   TbSatellite,
+  TbSunFilled,
   TbUserFilled,
 } from "react-icons/tb";
+import { DARK_MODE, Theme } from "@/util/Theme";
 import TerminalData from "@/TerminalData";
 import AboutMe from "@/TerminalData/AboutMe";
 import AcreageContour from "@/TerminalData/Projects/AcreageContour";
@@ -41,7 +44,20 @@ export interface FolderApp extends BaseApp {
   children: App[];
 }
 
-export type App = TerminalApp | FolderApp;
+// Switches between day and night mode instead of opening a window. Its name
+// and icon change with the mode.
+export interface ThemeApp {
+  type: "theme";
+  id: string;
+  day: Pick<BaseApp, "name" | "icon">; // shown in day mode
+  night: Pick<BaseApp, "name" | "icon">; // shown in night mode
+}
+
+export type App = TerminalApp | FolderApp | ThemeApp;
+
+// The name and icon to show for an app in the current theme.
+export const appearance = (app: App, theme: Theme) =>
+  app.type === "theme" ? (theme === DARK_MODE ? app.night : app.day) : app;
 
 const aboutMe: TerminalApp = {
   type: "terminal",
@@ -102,13 +118,21 @@ const projects: FolderApp = {
   ],
 };
 
+// Shows the mode a double-click switches to.
+const themeToggle: ThemeApp = {
+  type: "theme",
+  id: "theme-toggle",
+  day: { name: "Night Mode", icon: TbMoonFilled },
+  night: { name: "Day Mode", icon: TbSunFilled },
+};
+
 // The root folder ("~"). Its children are the icons on the desktop.
 export const HOME: FolderApp = {
   type: "folder",
   id: "home",
   name: "Home",
   icon: TbHomeFilled,
-  children: [aboutMe, projects],
+  children: [aboutMe, projects, themeToggle],
 };
 
 // Opened when the page loads.
