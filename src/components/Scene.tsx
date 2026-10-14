@@ -9,7 +9,7 @@ import {
   onWindowResize,
   Wallpaper,
 } from "@/three";
-import { ThemeContext } from "@/pages/ThemeProvider";
+import { ThemeContext } from "@/components/ThemeProvider";
 
 export default function Scene() {
   const mountRef = useRef<HTMLDivElement>(null!);

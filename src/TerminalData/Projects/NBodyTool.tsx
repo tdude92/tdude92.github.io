@@ -49,13 +49,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function NBodyTool(startX?: number, startY?: number) {
+export default function NBodyTool() {
   return new TerminalData(
     "/NBodyTool.gif",
     "Gravitational simualation of a rotating galaxy",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }

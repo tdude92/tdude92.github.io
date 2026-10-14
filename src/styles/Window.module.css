@@ -1,0 +1,13 @@
+/* Keep the size in sync with WINDOW_WIDTH/WINDOW_HEIGHT in WindowManager.tsx. */
+.root {
+  width: 800px;
+  height: 450px;
+
+  border: 1px solid #888888;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0px;
+}

@@ -2,11 +2,11 @@ import Head from "next/head";
 import { Ubuntu_Mono } from "next/font/google";
 
 import style from "@/styles/Home.module.css";
-import Scene from "./view/Three/Scene";
-import ThemeProvider from "./ThemeProvider";
-import WindowProvider from "./WindowManager";
-import Windows from "./Windows";
-import Files from "./Files";
+import Scene from "@/components/Scene";
+import ThemeProvider from "@/components/ThemeProvider";
+import WindowProvider from "@/components/WindowManager";
+import Windows from "@/components/Windows";
+import Desktop from "@/components/Desktop";
 
 const ubuntuMonoFont = Ubuntu_Mono({
   weight: "700",
@@ -26,7 +26,7 @@ export default function Home() {
       <ThemeProvider>
         <WindowProvider>
           <main className={`${style.main} ${ubuntuMonoFont.className}`}>
-            <Files />
+            <Desktop />
             <Windows />
             <Scene />
           </main>

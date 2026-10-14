@@ -39,13 +39,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function AcreageContour(startX?: number, startY?: number) {
+export default function AcreageContour() {
   return new TerminalData(
     "/AcreageContour.jpg",
     "Land use image segmentation output",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }

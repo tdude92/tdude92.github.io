@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { LuMoonStar, LuSun } from "react-icons/lu";
-import { ThemeContext } from "@/pages/ThemeProvider";
+import { ThemeContext } from "@/components/ThemeProvider";
 import { DARK_MODE, LIGHT_MODE, Theme } from "@/util/Theme";
-import { WindowContext } from "@/pages/WindowManager";
-import TerminalData from "@/TerminalData";
+import { WindowContext } from "@/components/WindowManager";
 
 const TitleBarDiv = styled.div<{ $theme: Theme }>`
   background-color: ${(props) =>
@@ -12,6 +11,7 @@ const TitleBarDiv = styled.div<{ $theme: Theme }>`
   width: 100%;
   height: 10%;
   border-radius: 12px 12px 0px 0px;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,11 @@ const TitleBarDiv = styled.div<{ $theme: Theme }>`
 const Text = styled.p<{ $theme: Theme }>`
   color: ${(props) => props.$theme.terminalTheme.titleBarTextColor.getStyle()};
   font-size: 13.5pt;
-  margin-left: 180px;
+  white-space: nowrap;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const WindowButton = styled.div`
@@ -87,19 +91,20 @@ const LightModeButton = styled(LuSun)<{ $theme: Theme }>`
 `;
 
 interface TitleBarProps {
-  data: TerminalData;
+  id: string;
+  title: string;
 }
 
 export default function TitleBar(props: TitleBarProps) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { windows, setWindows } = useContext(WindowContext);
+  const { closeWindow } = useContext(WindowContext);
 
   const handleCloseButtonClicked = () => {
-    setWindows(windows.filter((terminalData) => terminalData != props.data));
+    closeWindow(props.id);
   };
 
   const handleMinimizeButtonClicked = () => {
-    setWindows(windows.filter((terminalData) => terminalData != props.data));
+    closeWindow(props.id);
   };
 
   const useToggleThemeButton = (theme: Theme) => {
@@ -137,7 +142,7 @@ export default function TitleBar(props: TitleBarProps) {
       <CloseButton $theme={theme} onClick={handleCloseButtonClicked} />
       <MinimizeButton $theme={theme} onClick={handleMinimizeButtonClicked} />
       <MaximizeButton $theme={theme} />
-      <Text $theme={theme}>trevor@PersonalSite: ~</Text>
+      <Text $theme={theme}>{props.title}</Text>
       {useToggleThemeButton(theme)}
     </TitleBarDiv>
   );

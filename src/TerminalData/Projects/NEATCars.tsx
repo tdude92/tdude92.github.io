@@ -43,13 +43,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function NEATCars(startX?: number, startY?: number) {
+export default function NEATCars() {
   return new TerminalData(
     "/NEATCars.gif",
     "Car driving around racetrack",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }

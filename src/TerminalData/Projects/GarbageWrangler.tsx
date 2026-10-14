@@ -48,13 +48,11 @@ const getBody = (theme: Theme) => (
   </>
 );
 
-export default function GarbageWrangler(startX?: number, startY?: number) {
+export default function GarbageWrangler() {
   return new TerminalData(
     "/GarbageWrangler.png",
     "In-game screenshot of Garbage Wrangler",
     getCommand,
-    getBody,
-    startX,
-    startY
+    getBody
   );
 }
