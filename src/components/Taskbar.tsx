@@ -9,7 +9,7 @@ import {
 } from "@/components/WindowManager";
 import { Theme } from "@/util/Theme";
 
-const Bar = styled.nav<{ $theme: Theme }>`
+const Bar = styled.nav<{ $theme: Theme; $hidden: boolean }>`
   position: fixed;
   left: 0;
   right: 0;
@@ -28,6 +28,14 @@ const Bar = styled.nav<{ $theme: Theme }>`
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  // Slides off the bottom of the screen when no windows are open.
+  transform: translateY(${(props) => (props.$hidden ? "100%" : "0%")});
+  transition: transform 0.2s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;
 
 const Entry = styled.button<{
@@ -91,7 +99,12 @@ export default function Taskbar() {
   const activeId = activeWindowId(windows);
 
   return (
-    <Bar $theme={theme} aria-label="Taskbar">
+    <Bar
+      $theme={theme}
+      // Minimized windows still count: the task bar is how they're restored.
+      $hidden={windows.length === 0}
+      aria-label="Taskbar"
+    >
       {windows.map((w) => {
         const app = windowApp(w);
         return (
