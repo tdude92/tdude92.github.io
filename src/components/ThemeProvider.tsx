@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
-import { LIGHT_MODE, Theme } from "@/util/Theme";
+import { DARK_MODE, LIGHT_MODE } from "@/util/Theme";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type ThemeProviderProps = {
 
 const defaultContext = {
   theme: LIGHT_MODE,
-  setTheme: (_: Theme) => {}, // eslint-disable-line @typescript-eslint/no-unused-vars
+  toggleTheme: () => {},
 };
 
 export const ThemeContext = createContext(defaultContext);
@@ -16,8 +16,12 @@ export const ThemeContext = createContext(defaultContext);
 export default function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState(defaultContext.theme);
 
+  const toggleTheme = useCallback(() => {
+    setTheme((theme) => (theme === DARK_MODE ? LIGHT_MODE : DARK_MODE));
+  }, []);
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

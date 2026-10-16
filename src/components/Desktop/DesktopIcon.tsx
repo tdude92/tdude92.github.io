@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Rnd } from "react-rnd";
 import styled from "styled-components";
 import { ThemeContext } from "@/components/ThemeProvider";
-import { App } from "@/apps";
+import { App, appearance } from "@/apps";
 import { Theme } from "@/util/Theme";
 
 const IconDiv = styled.div<{ $theme: Theme }>`
@@ -34,7 +34,7 @@ interface DesktopIconProps {
 
 export default function DesktopIcon(props: DesktopIconProps) {
   const { theme } = useContext(ThemeContext);
-  const Icon = props.app.icon;
+  const { name, icon: Icon } = appearance(props.app, theme);
 
   return (
     <Rnd
@@ -43,7 +43,7 @@ export default function DesktopIcon(props: DesktopIconProps) {
     >
       <IconDiv $theme={theme} onDoubleClick={props.onOpen}>
         <Icon size="60px" color={theme.fileTheme.iconColor.getStyle()} />
-        <IconName $theme={theme}>{props.app.name}</IconName>
+        <IconName $theme={theme}>{name}</IconName>
       </IconDiv>
     </Rnd>
   );
