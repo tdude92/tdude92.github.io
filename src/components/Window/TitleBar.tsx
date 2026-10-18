@@ -8,8 +8,8 @@ const TitleBarDiv = styled.div<{ $theme: Theme }>`
   background-color: ${(props) =>
     props.$theme.terminalTheme.titleBarBackgroundColor.getStyle()};
   width: 100%;
-  height: 10%;
-  border-radius: 12px 12px 0px 0px;
+  height: 45px;
+  flex-shrink: 0;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -62,7 +62,8 @@ interface TitleBarProps {
 
 export default function TitleBar(props: TitleBarProps) {
   const { theme } = useContext(ThemeContext);
-  const { closeWindow, minimizeWindow } = useContext(WindowContext);
+  const { closeWindow, minimizeWindow, toggleMaximize } =
+    useContext(WindowContext);
 
   const handleCloseButtonClicked = () => {
     closeWindow(props.id);
@@ -76,7 +77,7 @@ export default function TitleBar(props: TitleBarProps) {
     <TitleBarDiv $theme={theme}>
       <CloseButton $theme={theme} onClick={handleCloseButtonClicked} />
       <MinimizeButton $theme={theme} onClick={handleMinimizeButtonClicked} />
-      <MaximizeButton $theme={theme} />
+      <MaximizeButton $theme={theme} onClick={() => toggleMaximize(props.id)} />
       <Text $theme={theme}>{props.title}</Text>
     </TitleBarDiv>
   );

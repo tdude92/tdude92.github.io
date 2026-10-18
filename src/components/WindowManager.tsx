@@ -18,6 +18,7 @@ interface BaseWindowState {
   y: number;
   z: number;
   minimized: boolean;
+  maximized: boolean;
 }
 
 export interface TerminalWindowState extends BaseWindowState {
@@ -41,6 +42,9 @@ type WindowContent =
 export const windowApp = (w: WindowState): TerminalApp | FolderApp =>
   w.kind === "explorer" ? w.path[w.path.length - 1] : w.app;
 
+// Minimized windows still count: the task bar is how they're restored.
+export const isTaskbarVisible = (windows: WindowState[]) => windows.length > 0;
+
 // The frontmost window that isn't minimized.
 export const activeWindowId = (windows: WindowState[]) =>
   windows
@@ -56,6 +60,8 @@ const defaultContext = {
   openApp: (_app: App, _parentPath: FolderApp[]) => {},
   closeWindow: (_id: string) => {},
   minimizeWindow: (_id: string) => {},
+  // Maximizes the window, or restores it if it's already maximized.
+  toggleMaximize: (_id: string) => {},
   focusWindow: (_id: string) => {},
   // Restores and focuses the window, or minimizes it if it's already active.
   toggleWindow: (_id: string) => {},
@@ -115,7 +121,15 @@ export default function WindowProvider({ children }: WindowManagerProps) {
         const z = nextZ(windows);
         return [
           ...windows,
-          { id: app.id, x, y, z, minimized: false, ...content },
+          {
+            id: app.id,
+            x,
+            y,
+            z,
+            minimized: false,
+            maximized: false,
+            ...content,
+          },
         ];
       });
     },
@@ -128,6 +142,15 @@ export default function WindowProvider({ children }: WindowManagerProps) {
 
   const minimizeWindow = useCallback((id: string) => {
     setWindows((windows) => update(windows, id, { minimized: true }));
+  }, []);
+
+  const toggleMaximize = useCallback((id: string) => {
+    setWindows((windows) => {
+      const target = windows.find((w) => w.id === id);
+      return target
+        ? update(raise(windows, id), id, { maximized: !target.maximized })
+        : windows;
+    });
   }, []);
 
   const focusWindow = useCallback((id: string) => {
@@ -159,6 +182,7 @@ export default function WindowProvider({ children }: WindowManagerProps) {
         openApp,
         closeWindow,
         minimizeWindow,
+        toggleMaximize,
         focusWindow,
         toggleWindow,
         navigate,

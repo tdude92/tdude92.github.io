@@ -1,3 +1,14 @@
+/* Applied to the draggable wrapper, which positions the window. Moving to
+   and from the corner on maximize/restore is animated; dragging isn't, so
+   the window keeps up with the mouse. */
+.window {
+  transition: transform 0.25s ease;
+}
+
+.window:global(.react-draggable-dragging) {
+  transition: none;
+}
+
 /* Keep the size in sync with WINDOW_WIDTH/WINDOW_HEIGHT in WindowManager.tsx. */
 .root {
   width: 800px;
@@ -5,6 +16,7 @@
 
   border: 1px solid #888888;
   border-radius: 12px;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -14,7 +26,18 @@
   transform-origin: bottom center;
   transition:
     transform 0.2s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    width 0.25s ease,
+    height 0.25s ease,
+    border-radius 0.25s ease;
+}
+
+/* Fills the screen above the task bar. --taskbar-height is set on the
+   wrapper, so the height follows the task bar showing and hiding. */
+.maximized .root {
+  width: 100vw;
+  height: calc(100vh - var(--taskbar-height, 0px));
+  border-radius: 0px;
 }
 
 /* Applied to the draggable wrapper. Hidden only once the shrink animation
@@ -31,6 +54,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .window,
   .root,
   .minimized {
     transition: none;

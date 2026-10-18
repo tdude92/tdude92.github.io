@@ -16,8 +16,8 @@ const hoverColor = (theme: Theme) => theme.fileTheme.highlightColor;
 
 const Body = styled.div<{ $theme: Theme }>`
   width: 100%;
-  height: 90%;
-  border-radius: 0px 0px 12px 12px;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 
   display: flex;

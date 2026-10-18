@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ThemeContext } from "@/components/ThemeProvider";
 import {
   activeWindowId,
+  isTaskbarVisible,
   TASKBAR_HEIGHT,
   WindowContext,
   windowApp,
@@ -101,8 +102,7 @@ export default function Taskbar() {
   return (
     <Bar
       $theme={theme}
-      // Minimized windows still count: the task bar is how they're restored.
-      $hidden={windows.length === 0}
+      $hidden={!isTaskbarVisible(windows)}
       aria-label="Taskbar"
     >
       {windows.map((w) => {
