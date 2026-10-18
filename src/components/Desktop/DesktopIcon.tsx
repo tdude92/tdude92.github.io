@@ -5,9 +5,15 @@ import { ThemeContext } from "@/components/ThemeProvider";
 import { App, appearance } from "@/apps";
 import { Theme } from "@/util/Theme";
 
-const IconDiv = styled.div<{ $theme: Theme }>`
+const IconDiv = styled.div<{ $theme: Theme; $selected: boolean }>`
   width: 80px;
   height: 80px;
+
+  background-color: ${(props) =>
+    props.$selected ? props.$theme.fileTheme.highlightColor : "transparent"};
+  // A thin outline tells the selected icon apart from a hovered one.
+  box-shadow: ${(props) =>
+    props.$selected ? "inset 0 0 0 1px rgba(255, 255, 255, 0.35)" : "none"};
 
   &:hover {
     background-color: ${(props) => props.$theme.fileTheme.highlightColor};
@@ -27,6 +33,7 @@ const IconName = styled.div<{ $theme: Theme }>`
 
 interface DesktopIconProps {
   app: App;
+  selected: boolean;
   x: number;
   y: number;
   onOpen: () => void;
@@ -41,7 +48,13 @@ export default function DesktopIcon(props: DesktopIconProps) {
       default={{ x: props.x, y: props.y, width: "auto", height: "auto" }}
       enableResizing={false}
     >
-      <IconDiv $theme={theme} onDoubleClick={props.onOpen}>
+      <IconDiv
+        $theme={theme}
+        $selected={props.selected}
+        // Read by Desktop to tell which icon was pressed.
+        data-desktop-icon={props.app.id}
+        onDoubleClick={props.onOpen}
+      >
         <Icon size="60px" color={theme.fileTheme.iconColor.getStyle()} />
         <IconName $theme={theme}>{name}</IconName>
       </IconDiv>
