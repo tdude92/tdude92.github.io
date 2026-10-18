@@ -9,14 +9,18 @@ const IconDiv = styled.div<{ $theme: Theme; $selected: boolean }>`
   width: 80px;
   height: 80px;
 
+  // Like Windows: hovered, selected and selected-and-hovered icons each
+  // get their own highlight.
   background-color: ${(props) =>
-    props.$selected ? props.$theme.fileTheme.highlightColor : "transparent"};
-  // A thin outline tells the selected icon apart from a hovered one.
+    props.$selected ? props.$theme.fileTheme.selectedColor : "transparent"};
   box-shadow: ${(props) =>
     props.$selected ? "inset 0 0 0 1px rgba(255, 255, 255, 0.35)" : "none"};
 
   &:hover {
-    background-color: ${(props) => props.$theme.fileTheme.highlightColor};
+    background-color: ${(props) =>
+      props.$selected
+        ? props.$theme.fileTheme.selectedHoverColor
+        : props.$theme.fileTheme.highlightColor};
     cursor: pointer;
   }
 
