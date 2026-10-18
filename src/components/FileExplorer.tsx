@@ -10,7 +10,8 @@ import { Theme } from "@/util/Theme";
 
 const dividerColor = (theme: Theme) =>
   theme.terminalTheme.bodyTextHighlightColor.getStyle();
-const selectedColor = dividerColor;
+// Marks the current folder in the sidebar.
+const activeColor = dividerColor;
 const hoverColor = (theme: Theme) => theme.fileTheme.highlightColor;
 
 const Body = styled.div<{ $theme: Theme }>`
@@ -113,11 +114,11 @@ const SidebarItem = styled(Button)<{
   border-radius: 6px;
   text-align: left;
   background-color: ${(props) =>
-    props.$active ? selectedColor(props.$theme) : "transparent"};
+    props.$active ? activeColor(props.$theme) : "transparent"};
 
   &:hover {
     background-color: ${(props) =>
-      props.$active ? selectedColor(props.$theme) : hoverColor(props.$theme)};
+      props.$active ? activeColor(props.$theme) : hoverColor(props.$theme)};
   }
 `;
 
@@ -139,12 +140,19 @@ const Item = styled(Button)<{ $theme: Theme; $selected: boolean }>`
   gap: 6px;
   padding: 10px 4px;
   border-radius: 8px;
+
+  // Same highlights as desktop icons: hovered, selected, and selected and
+  // hovered each look different.
   background-color: ${(props) =>
-    props.$selected ? selectedColor(props.$theme) : "transparent"};
+    props.$selected ? props.$theme.fileTheme.selectedColor : "transparent"};
+  box-shadow: ${(props) =>
+    props.$selected ? "inset 0 0 0 1px rgba(255, 255, 255, 0.35)" : "none"};
 
   &:hover {
     background-color: ${(props) =>
-      props.$selected ? selectedColor(props.$theme) : hoverColor(props.$theme)};
+      props.$selected
+        ? props.$theme.fileTheme.selectedHoverColor
+        : hoverColor(props.$theme)};
   }
 `;
 
