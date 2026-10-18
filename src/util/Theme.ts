@@ -93,15 +93,23 @@ class FileTheme {
     iconColor: Color;
     nameColor: Color;
     highlightColor: string;
+    selectedColor: string;
+    selectedHoverColor: string;
   }) {
     this.iconColor = options.iconColor;
     this.nameColor = options.nameColor;
     this.highlightColor = options.highlightColor;
+    this.selectedColor = options.selectedColor;
+    this.selectedHoverColor = options.selectedHoverColor;
   }
 
   iconColor: Color;
   nameColor: Color;
+  // Background of an icon under the mouse.
   highlightColor: string;
+  // Background of the selected icon, and of the selected icon under the mouse.
+  selectedColor: string;
+  selectedHoverColor: string;
 }
 
 export class Theme {
@@ -183,12 +191,16 @@ namespace FileTheme {
     iconColor: new Color("#c9c0c6"),
     nameColor: new Color("#c9c0c6"),
     highlightColor: "rgba(94, 76, 67, 0.5)",
+    selectedColor: "rgba(114, 159, 207, 0.45)",
+    selectedHoverColor: "rgba(114, 159, 207, 0.6)",
   });
 
   export const DARK_MODE = new FileTheme({
     iconColor: new Color("#e3d8dd"),
     nameColor: new Color("#e3d8dd"),
     highlightColor: "rgba(67, 76, 94, 0.5)",
+    selectedColor: "rgba(94, 129, 172, 0.45)",
+    selectedHoverColor: "rgba(94, 129, 172, 0.6)",
   });
 }
 
